@@ -1,16 +1,16 @@
-import { LOG_IN, LOG_OUT } from "../actions/types";
+import { SIGN_IN, SIGN_OUT } from "../actions/types";
 
-const initialState = {
-  loggedIn: null,
+const INITIAL_STATE = {
+  isSignedIn: null,
   userId: null,
 };
 
-function authReducer(state = initialState, action) {
+function authReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case LOG_IN:
-      return { ...state, loggedIn: true, userId: action.payload };
-    case LOG_OUT:
-      return { ...state, loggedIn: false, userId: null };
+    case SIGN_IN:
+      return { ...state, isSignedIn: true, userId: action.payload };
+    case SIGN_OUT:
+      return { ...state, isSignedIn: false, userId: null };
     default:
       return state;
   }

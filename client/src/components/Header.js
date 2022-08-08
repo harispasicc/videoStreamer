@@ -1,27 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import "../index.css";
+import "../index.css";
 import GoogleAuth from "./GoogleAuth";
+
 function Header() {
   return (
     <div className="ui secondary pointing menu">
-      <div className="item">
-        <h1>Streamer</h1>
-      </div>
+      <Link to="/" className="item">
+        <h1 className="ui mini">Streamer</h1>
+      </Link>
       <div className="right menu">
         <Link to="/" className="item">
-          All Streams
+          <p style={{ marginBottom: "13%" }}>All Streams</p>
         </Link>
+        <GoogleAuth />
       </div>
     </div>
-
-    // <nav className="navbar">
-    //   <h1>Streamer</h1>
-    //   <Link to="/" className="right-menu">
-    //     All Streams
-    //   </Link>
-    //   <GoogleAuth />
-    // </nav>
   );
 }
 

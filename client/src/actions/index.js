@@ -1,47 +1,45 @@
 import {
-  LOG_IN,
-  LOG_OUT,
-  FETCH_LIST_STREAMS,
+  SIGN_IN,
+  SIGN_OUT,
+  FETCH_STREAMS,
   CREATE_STREAM,
   EDIT_STREAM,
   FETCH_STREAM,
   DELETE_STREAM,
 } from "./types";
-import streams from "../apis/streams";
+import streams from "../api/streams";
 
 export const signIn = userId => {
   return {
-    type: LOG_IN,
+    type: SIGN_IN,
     payload: userId,
   };
 };
 
 export const signOut = () => {
   return {
-    type: LOG_OUT,
+    type: SIGN_OUT,
   };
 };
 
 export const fetchStreams = () => async dispatch => {
-  try {
-    const res = await streams.get("/streams");
-    dispatch({
-      type: FETCH_LIST_STREAMS,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.log(err);
-  }
+  const res = await streams.get("/streams");
+  dispatch({
+    type: FETCH_STREAMS,
+    payload: res.data,
+  });
 };
 
-export const createStream = formValues => async (dispatch, getState) => {
+export const createStream = formValues => {
   try {
-    const { userId } = getState().auth;
-    const res = await streams.post("/streams", { ...formValues, userId });
-    dispatch({
-      type: CREATE_STREAM,
-      payload: res.data,
-    });
+    return async (dispatch, getState) => {
+      const { userId } = getState().auth;
+      const res = await streams.post("/streams", { ...formValues, userId });
+      dispatch({
+        type: CREATE_STREAM,
+        payload: res.data,
+      });
+    };
   } catch (err) {
     console.log(err);
   }
@@ -62,15 +60,11 @@ export const editStream = (id, formValues) => {
 };
 
 export const fetchStream = id => async dispatch => {
-  try {
-    const res = await streams.get(`/streams/${id}`);
-    dispatch({
-      type: FETCH_STREAM,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.log(err);
-  }
+  const res = await streams.get(`/streams/${id}`);
+  dispatch({
+    type: FETCH_STREAM,
+    payload: res.data,
+  });
 };
 
 export const deleteStream = id => {
