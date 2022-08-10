@@ -15,6 +15,7 @@ const StreamShow = props => {
   useEffect(() => {
     props.fetchStream(id);
     player();
+    // eslint-disable-next-line
   }, []);
 
   const player = () => {

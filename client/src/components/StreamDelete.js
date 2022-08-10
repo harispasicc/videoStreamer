@@ -15,6 +15,7 @@ function StreamDelete(props) {
   useEffect(() => {
     props.fetchStream(id);
     setLoading(false);
+    // eslint-disable-next-line
   }, []);
 
   const onCancel = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { editStream, fetchStream } from "../actions";
 import StreamForm from "./StreamForm";
@@ -12,27 +12,33 @@ function StreamEdit(props) {
 
   const { id } = useParams();
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    props.fetchStream(id);
+    dispatch(fetchStream(id));
     setLoading(false);
-  }, []);
+  }, [dispatch, id]);
+
   const onSubmit = formValues => {
-    props.editStream(id, formValues);
+    dispatch(props.editStream(stream.id, formValues));
   };
 
   if (loading) {
     return "Loading";
   }
+
   return (
     <div>
       <h3>Edit Stream:</h3>
-      <StreamForm
-        onSubmit={onSubmit}
-        initialValues={{
-          title: stream.title,
-          description: stream.description,
-        }}
-      />
+      {Number(stream.id) === Number(id) && (
+        <StreamForm
+          onSubmit={onSubmit}
+          initialValues={{
+            title: stream.title,
+            description: stream.description,
+          }}
+        />
+      )}{" "}
     </div>
   );
 }

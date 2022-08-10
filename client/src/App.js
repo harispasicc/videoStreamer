@@ -9,18 +9,16 @@ import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="ui container">
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" exact element={<StreamList />} />
-          <Route path="/streams/new" exact element={<StreamCreate />} />
-          <Route path="/streams/edit/:id" exact element={<StreamEdit />} />
-          <Route path="/streams/delete/:id" exact element={<StreamDelete />} />
-          <Route path="/streams/:id" exact element={<StreamShow />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" exact element={<StreamList />} />
+        <Route path="/streams/new" exact element={<StreamCreate />} />
+        <Route path="/streams/edit/:id" exact element={<StreamEdit />} />
+        <Route path="/streams/delete/:id" exact element={<StreamDelete />} />
+        <Route path="/streams/:id" exact element={<StreamShow />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

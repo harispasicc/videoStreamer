@@ -21,6 +21,7 @@ const GoogleAuth = ({ dispatch, isSignedIn }) => {
           window.gapi.auth2.getAuthInstance().isSignedIn.listen(onAuthChange);
         });
     });
+    // eslint-disable-next-line
   }, []);
 
   const onAuthChange = isSignedIn => {

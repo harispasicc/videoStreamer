@@ -31,32 +31,24 @@ export const fetchStreams = () => async dispatch => {
 };
 
 export const createStream = formValues => {
-  try {
-    return async (dispatch, getState) => {
-      const { userId } = getState().auth;
-      const res = await streams.post("/streams", { ...formValues, userId });
-      dispatch({
-        type: CREATE_STREAM,
-        payload: res.data,
-      });
-    };
-  } catch (err) {
-    console.log(err);
-  }
+  return async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const res = await streams.post("/streams", { ...formValues, userId });
+    dispatch({
+      type: CREATE_STREAM,
+      payload: res.data,
+    });
+  };
 };
 
 export const editStream = (id, formValues) => {
-  try {
-    return async dispatch => {
-      const res = await streams.patch(`/streams/${id}`, formValues);
-      dispatch({
-        type: EDIT_STREAM,
-        payload: res.data,
-      });
-    };
-  } catch (err) {
-    console.log(err);
-  }
+  return async dispatch => {
+    const res = await streams.patch(`/streams/${id}`, formValues);
+    dispatch({
+      type: EDIT_STREAM,
+      payload: res.data,
+    });
+  };
 };
 
 export const fetchStream = id => async dispatch => {
@@ -68,15 +60,11 @@ export const fetchStream = id => async dispatch => {
 };
 
 export const deleteStream = id => {
-  try {
-    return async dispatch => {
-      await streams.delete(`/streams/${id}`);
-      dispatch({
-        type: DELETE_STREAM,
-        payload: id,
-      });
-    };
-  } catch (err) {
-    console.log(err);
-  }
+  return async dispatch => {
+    await streams.delete(`/streams/${id}`);
+    dispatch({
+      type: DELETE_STREAM,
+      payload: id,
+    });
+  };
 };

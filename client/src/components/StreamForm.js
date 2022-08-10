@@ -3,6 +3,7 @@ import { Field, hasSubmitSucceeded, reduxForm } from "redux-form";
 import { createStream } from "../actions";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+// import { useSelector } from "react-redux";
 
 const StreamField = ({ input, label, meta }) => {
   return (
@@ -13,6 +14,7 @@ const StreamField = ({ input, label, meta }) => {
     </div>
   );
 };
+
 const renderError = ({ error, touched }) => {
   if (touched && error) {
     return <div className="ui pointing label">{error}</div>;
@@ -21,6 +23,8 @@ const renderError = ({ error, touched }) => {
 
 function StreamForm(props) {
   const navigate = useNavigate();
+
+  // const stream = useSelector(state => state.stream);
 
   const onSubmit = formValues => {
     props.onSubmit(formValues);

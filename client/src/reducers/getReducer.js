@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { FETCH_STREAM } from "../actions/types";
 
 const getStreamReducer = (state = {}, action) => {

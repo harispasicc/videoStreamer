@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 function StreamList({ fetchStreams, streams, currentUserId, isSignedIn }) {
   useEffect(() => {
     fetchStreams();
+    // eslint-disable-next-line
   }, []);
 
   const renderAdmin = stream => {
