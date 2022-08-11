@@ -20,7 +20,7 @@ function StreamEdit(props) {
   }, [dispatch, id]);
 
   const onSubmit = formValues => {
-    dispatch(props.editStream(stream.id, formValues));
+    dispatch(editStream(stream.id, formValues));
   };
 
   if (loading) {
